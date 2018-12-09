@@ -11,9 +11,19 @@ public class TestConfigLoader {
     public static void main(String[] args) throws Exception{
         ConfigurationLoader loader = new ConfigurationLoader();
         loader.loadConfiguration();
-        loader.getConfig().thenAcceptAsync(System.out::println);
+        loader.getConfig().thenAccept(
+                config -> {
+                    System.out.println(Thread.currentThread().getName());
+                    System.out.println(config.getDatabaseName());
+                }
+        );
         Util.sleep(5000);
-        loader.getConfig().thenAcceptAsync(System.out::println);
+        loader.getConfig().thenAcceptAsync(
+                config -> {
+                    System.out.println(Thread.currentThread().getName());
+                    System.out.println(config.getDatabaseName());
+                }
+        );
 
         System.out.println(loader.getConfig().get().getDatabaseName());
 

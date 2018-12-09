@@ -16,6 +16,8 @@ public class ConfigurationLoader {
 
         configFuture = CompletableFuture.supplyAsync(
                 () -> {
+                    System.out.println(Thread.currentThread().getName());
+
                     Config config = new Config();
                     config.setDatabaseName("INTDB");
                     Util.sleep(1000);
